@@ -1,0 +1,118 @@
+[
+    {
+        "salePointName": "ДО «Солнечногорский» Филиала № 7701 Банка ВТБ (ПАО)",
+        "address": "141506, Московская область, г. Солнечногорск, ул. Красная, д. 60",        "status": "открытая",
+        "openHours": [
+            {
+                "days": "пн",
+                "hours": "09:00-18:00"
+            },
+            {
+                "days": "вт",
+                "hours": "09:00-18:00"
+            },
+            {
+                "days": "ср",
+                "hours": "09:00-18:00"
+            },
+            {
+                "days": "чт",
+                "hours": "09:00-18:00"
+            },
+            {
+                "days": "пт",
+                "hours": "09:00-17:00"
+            },
+            {
+                "days": "сб",
+                "hours": "выходной"
+            },
+            {
+                "days": "вс",
+                "hours": "выходной"
+            }
+        ],
+        "rko": "есть РКО",        "openHoursIndividual": [
+            {
+                "days": "пн",
+                "hours": "09:00-20:00"
+            },
+            {
+                "days": "вт",
+                "hours": "09:00-20:00"
+            },
+            {
+                "days": "ср",
+                "hours": "09:00-20:00"
+            },
+            {
+                "days": "чт",
+                "hours": "09:00-20:00"
+            },
+            {
+                "days": "пт",
+                "hours": "09:00-20:00"
+            },
+            {
+                "days": "сб",
+                "hours": "10:00-17:00"
+            },
+            {
+                "days": "вс",
+                "hours": "выходной"
+            }
+        ],
+        "officeType": "Да (Зона Привилегия)",
+        "salePointFormat": "Универсальный",
+        "suoAvailability": "Y",
+        "hasRamp": "N",
+        "latitude": 56.184479,
+        "longitude": 36.984314,
+        "metroStation": null,
+        "distance": 62105,
+        "kep": true,
+        "myBranch": false
+    },
+    {
+        "salePointName": "ДО «На Баранова» Филиала № 7701 Банка ВТБ (ПАО)",
+        "address": "141500, Московская область, г. Солнечногорск, ул. Баранова, д. 1, 1-й этаж",        "status": "открытая",
+        "openHours": [
+            {
+                "days": "пн-чт",
+                "hours": "09:00-18:00"
+            },
+            {
+                "days": "пт",
+                "hours": "09:00-17:00"
+            },
+            {
+                "days": "сб,вс",
+                "hours": "выходной"
+            }
+        ],
+        "rko": "нет РКО",        "openHoursIndividual": [
+            {
+                "days": "пн-пт",
+                "hours": "09:00-20:00"
+            },
+            {
+                "days": "сб",
+                "hours": "10:00-17:00"
+            },
+            {
+                "days": "в",
+                "hours": "выходной"
+            }
+        ],
+        "officeType": "Да",
+        "salePointFormat": "Стандарт",
+        "suoAvailability": null,
+        "hasRamp": null,
+        "latitude": 56.183239,
+        "longitude": 36.9757,
+        "metroStation": null,
+        "distance": 62343,
+        "kep": null,
+        "myBranch": false
+    }
+]
