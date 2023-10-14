@@ -16,7 +16,7 @@ from project.apps.nearest_bank_api.services.sale_point import (
 @pytest.mark.django_db
 def test_valid_case():
     json_file_name = ('/code/project/apps/nearest_bank_api'
-                     '/services/tests/sale_point/sale_point_test_data.json')
+                      '/services/tests/sale_point/sale_point_test_data.json')
 
     sale_points_save_from_json_file(json_file_name)
 
@@ -36,6 +36,7 @@ def test_valid_case():
         expected_dict = {
             k: v for k, v in data.items() if k not in ["openHours", "openHoursIndividual"]
         }
+        expected_dict['services'] = []
 
         assert sale_point_dict == expected_dict
 

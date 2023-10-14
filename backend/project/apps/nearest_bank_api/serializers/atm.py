@@ -1,17 +1,23 @@
 from django.db.transaction import atomic
-from rest_framework.serializers import ModelSerializer, Serializer, ValidationError
+from rest_framework.serializers import (
+    CharField,
+    ModelSerializer,
+    Serializer,
+    ValidationError,
+)
 
-from project.apps.nearest_bank_api.models.atm import Atm, AtmService
+from project.apps.nearest_bank_api.models.atm import Atm, AtmServiceThrough
+from project.apps.nearest_bank_api.models.common import Service
 
 
-class ServiceSerializer(ModelSerializer):
-    class Meta:
-        model = AtmService
-        fields = ('name', 'serviceCapability', 'serviceActivity')
+class AtmServiceThroughCreateSerializer(Serializer):
+    name = CharField()
+    serviceCapability = CharField()
+    serviceActivity = CharField()
 
 
 class AtmCreateSerializer(ModelSerializer):
-    services = ServiceSerializer(many=True)
+    services = AtmServiceThroughCreateSerializer(many=True)
 
     class Meta:
         model = Atm
@@ -21,7 +27,7 @@ class AtmCreateSerializer(ModelSerializer):
         if 'services' not in data:
             raise ValidationError({'services': ['This field is required.']})
 
-        if not isinstance(data['services'], dict):
+        if not isinstance(data['services'], dict):  # Если уже на сохранение идет
             return super().to_internal_value(data)
 
         services_data = data.pop('services')
@@ -29,14 +35,20 @@ class AtmCreateSerializer(ModelSerializer):
         data['services'] = services_list
         return super().to_internal_value(data)
 
+    @atomic
     def create(self, validated_data: dict) -> Atm:
         services = validated_data.pop('services')
 
         atm = Atm.objects.create(**validated_data)
 
-        services_serializer = ServiceSerializer(data=services, many=True)
-        if services_serializer.is_valid(raise_exception=True):
-            services_serializer.save(atm=atm)
+        for service_data in services:
+            service = Service.objects.get_or_create(name=service_data['name'])[0]
+            AtmServiceThrough.objects.create(
+                atm=atm,
+                service=service,
+                serviceCapability=service_data['serviceCapability'],
+                serviceActivity=service_data['serviceActivity']
+            )
 
         return atm
 

@@ -13,7 +13,9 @@ if __name__ == '__main__':
     django.setup()
 
     from project.apps.nearest_bank_api.services.atm import atms_save_from_json_file
-    from project.apps.nearest_bank_api.services.sale_point import sale_points_save_from_json_file
+    from project.apps.nearest_bank_api.services.sale_point import (
+        sale_points_save_from_json_file,
+    )
 
     sale_points_save_from_json_file(OFFICES_FILE_NAME)
     atms_save_from_json_file(ATMS_FILE_NAME)

@@ -12,7 +12,9 @@ import json
 
 from django.db.transaction import atomic
 
-from project.apps.nearest_bank_api.serializers.sale_point import SalePointCreateSerializer
+from project.apps.nearest_bank_api.serializers.sale_point import (
+    SalePointCreateSerializer,
+)
 
 
 @atomic

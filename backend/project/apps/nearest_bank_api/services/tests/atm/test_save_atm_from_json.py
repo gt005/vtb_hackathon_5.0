@@ -3,12 +3,8 @@ import json
 import pytest
 from django.forms.models import model_to_dict
 
-from project.apps.nearest_bank_api.models.atm import (
-    Atm, AtmService
-)
-from project.apps.nearest_bank_api.services.atm import (
-    atms_save_from_json_file
-)
+from project.apps.nearest_bank_api.models.atm import Atm, AtmServiceThrough
+from project.apps.nearest_bank_api.services.atm import atms_save_from_json_file
 
 
 @pytest.mark.django_db
@@ -37,8 +33,8 @@ def test_valid_case():
         assert atm_dict == expected_dict
 
         for service_name, service_availability in data['services'].items():
-            assert AtmService.objects.filter(
+            assert AtmServiceThrough.objects.filter(
                 atm=atm,
-                name=service_name,
+                service__name=service_name,
                 **service_availability
             ).exists()

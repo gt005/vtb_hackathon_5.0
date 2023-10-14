@@ -1,8 +1,18 @@
 from django.db import models
-from project.apps.nearest_bank_api.models.common import PositionalEntity
+
+from project.apps.nearest_bank_api.models.asbtracts import (
+    PositionalEntity,
+    ServiceAdditionalInformation,
+)
+from project.apps.nearest_bank_api.models.common import Service
 
 
 class SalePoint(PositionalEntity, models.Model):
+    services = models.ManyToManyField(
+        Service,
+        through='SalePointServiceThrough',
+        related_name='sale_points'
+    )
     salePointName = models.CharField(
         verbose_name='Наименование ТТ',
         max_length=255
@@ -119,3 +129,12 @@ class OpenHoursIndividual(models.Model):
 
     class Meta:
         verbose_name = 'Рабочие часы для ФЛ'
+
+
+class SalePointServiceThrough(ServiceAdditionalInformation, models.Model):
+    sale_point = models.ForeignKey(SalePoint, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Сервис отделения через'
+        unique_together = ["sale_point", "service"]
