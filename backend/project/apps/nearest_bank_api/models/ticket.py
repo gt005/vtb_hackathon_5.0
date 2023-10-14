@@ -4,6 +4,10 @@ from project.apps.nearest_bank_api.models import SalePoint, Service
 
 
 class Ticket(models.Model):
+    user_id = models.IntegerField(
+        verbose_name='id пользователя',
+        null=True
+    )
     salePoint = models.ForeignKey(
         SalePoint,
         verbose_name='Взят для отделения',
