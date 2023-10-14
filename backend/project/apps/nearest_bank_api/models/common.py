@@ -20,6 +20,10 @@ class Service(models.Model):
         null=True,
         blank=True
     )
+    averageWaitTime = models.FloatField(
+        verbose_name='Среднее время ожидания обслуживания на человека в минутах',
+        default=1.0
+    )
 
     class Meta:
         verbose_name = 'Предоставляемый сервис'

@@ -27,14 +27,14 @@ def test_valid_case():
         sale_point = SalePoint.objects.get(salePointName=data['salePointName'])
         sale_point_dict = model_to_dict(
             sale_point,
-            exclude=["id", "openHours", "openHoursIndividual"]
+            exclude=['id', 'openHours', 'openHoursIndividual', 'serviceStaffAmount']
         )
 
         # Удаление ключей со значением None, которых нет в исходном JSON
         sale_point_dict = {k: v for k, v in sale_point_dict.items() if v is not None or k in data}
 
         expected_dict = {
-            k: v for k, v in data.items() if k not in ["openHours", "openHoursIndividual"]
+            k: v for k, v in data.items() if k not in ['openHours', 'openHoursIndividual']
         }
         expected_dict['services'] = []
 

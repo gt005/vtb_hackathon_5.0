@@ -9,3 +9,4 @@ from project.apps.nearest_bank_api.models.sale_point import (
     OpenHoursIndividual,
     SalePoint,
 )
+from project.apps.nearest_bank_api.models.ticket import Ticket

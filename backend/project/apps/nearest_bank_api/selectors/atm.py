@@ -1,4 +1,5 @@
-from django.db.models import QuerySet, Prefetch
+from django.db.models import Prefetch, QuerySet
+
 from project.apps.nearest_bank_api.models import Atm, Service
 
 
@@ -9,4 +10,3 @@ def atm_get_list() -> QuerySet[Atm,]:
             queryset=Service.objects.all(),
         )
     )
-

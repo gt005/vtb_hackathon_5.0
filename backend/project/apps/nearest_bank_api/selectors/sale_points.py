@@ -1,4 +1,5 @@
-from django.db.models import QuerySet, Prefetch
+from django.db.models import Prefetch, QuerySet
+
 from project.apps.nearest_bank_api.models import SalePoint, Service
 
 

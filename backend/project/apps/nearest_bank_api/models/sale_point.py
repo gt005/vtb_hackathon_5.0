@@ -84,6 +84,10 @@ class SalePoint(PositionalEntity, models.Model):
         null=True,
         blank=True
     )
+    serviceStaffAmount = models.IntegerField(
+        verbose_name='Количество обслуживаемого персонала',
+        default=1
+    )
 
     class Meta:
         verbose_name = 'Отделение банка'
