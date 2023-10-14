@@ -16,7 +16,7 @@ from django.core.management.utils import get_random_secret_key
 
 env = environ.Env(
     DEBUG=(bool, False),
-    SECRET_KEY=(str, get_random_secret_key),
+    SECRET_KEY=(str, get_random_secret_key()),
 )
 
 environ.Env.read_env('.env')
@@ -89,7 +89,7 @@ DATABASES = {
     }
 }
 
-
+APPEND_SLASH = True
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
