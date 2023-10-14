@@ -11,13 +11,6 @@ class ServiceNameEnum(Enum):
     qrRead = ('Чтение QR-кодов')
     wheelchair = ('Доступность для инвалидных колясок')
 
-    @property
-    def eng(self):
-        return self.value[0]
-
-    @property
-    def ru(self):
-        return self.value[1]
 
 class ServiceCapabilityEnum(Enum):
     SUPPORTED = 'SUPPORTED'
