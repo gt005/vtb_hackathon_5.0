@@ -7,11 +7,6 @@ from project.apps.nearest_bank_api.domain.emums import (
 
 
 class ServiceAdditionalInformation(models.Model):
-    workload = models.IntegerField(
-        verbose_name='Временная загруженность',
-        null=True,
-        blank=True
-    )
     serviceCapability = models.CharField(
         max_length=50,
         choices=[(tag.value, tag.name) for tag in ServiceCapabilityEnum],
