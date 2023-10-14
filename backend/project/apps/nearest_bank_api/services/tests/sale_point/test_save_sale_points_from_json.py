@@ -3,7 +3,7 @@ import json
 import pytest
 from django.forms.models import model_to_dict
 
-from project.apps.nearest_bank_api.models import (
+from project.apps.nearest_bank_api.models.sale_point import (
     OpenHours,
     OpenHoursIndividual,
     SalePoint,
@@ -15,12 +15,12 @@ from project.apps.nearest_bank_api.services.sale_point import (
 
 @pytest.mark.django_db
 def test_valid_case():
-    json_filename = ('/code/project/apps/nearest_bank_api'
+    json_file_name = ('/code/project/apps/nearest_bank_api'
                      '/services/tests/sale_point/sale_point_test_data.json')
 
-    sale_points_save_from_json_file(json_filename)
+    sale_points_save_from_json_file(json_file_name)
 
-    with open(json_filename, 'r') as file:
+    with open(json_file_name, 'r') as file:
         sale_points_data = json.load(file)
 
     for data in sale_points_data:

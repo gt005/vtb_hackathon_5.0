@@ -1,14 +1,11 @@
 from django.db import models
+from project.apps.nearest_bank_api.models.common import PositionalEntity
 
 
-class SalePoint(models.Model):
+class SalePoint(PositionalEntity, models.Model):
     salePointName = models.CharField(
         verbose_name='Наименование ТТ',
         max_length=255
-    )
-    address = models.CharField(
-        verbose_name='Адрес ТП',
-        max_length=400
     )
     salePointCode = models.CharField(
         verbose_name='Код ТП',
@@ -56,12 +53,6 @@ class SalePoint(models.Model):
         null=True,
         blank=True
     )
-    latitude = models.FloatField(
-        verbose_name='Географическая широта'
-    )
-    longitude = models.FloatField(
-        verbose_name='Географическая долгота'
-    )
     metroStation = models.CharField(
         verbose_name='Станция метро',
         max_length=500,
@@ -84,6 +75,9 @@ class SalePoint(models.Model):
         blank=True
     )
 
+    class Meta:
+        verbose_name = 'Отделение банка'
+
 
 class OpenHours(models.Model):
     salePoint = models.ForeignKey(
@@ -102,6 +96,9 @@ class OpenHours(models.Model):
         blank=True
     )
 
+    class Meta:
+        verbose_name = 'Рабочие часы для ЮЛ'
+
 
 class OpenHoursIndividual(models.Model):
     salePoint = models.ForeignKey(
@@ -119,3 +116,6 @@ class OpenHoursIndividual(models.Model):
         null=True,
         blank=True
     )
+
+    class Meta:
+        verbose_name = 'Рабочие часы для ФЛ'
