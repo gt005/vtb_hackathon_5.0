@@ -10,8 +10,10 @@ from project.apps.nearest_bank_api.models import Atm, SalePoint
 from project.apps.nearest_bank_api.selectors.unified_points import (
     unified_point_get_active_service_id_list,
 )
+from project.apps.nearest_bank_api.serializers.sale_point import (
+    OpenHoursCreateSerializer,
+)
 from project.apps.nearest_bank_api.serializers.ticket import TicketReadSerializer
-from project.apps.nearest_bank_api.serializers.sale_point import OpenHoursCreateSerializer
 
 
 class UnifiedPoinsReadSerializer(Serializer):

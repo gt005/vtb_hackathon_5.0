@@ -1,10 +1,11 @@
 import pytest
 from django.urls import reverse
 from rest_framework.status import HTTP_201_CREATED
+
+from project.apps.nearest_bank_api.models import SalePoint, Service, Ticket
 from project.apps.nearest_bank_api.services.sale_point import (
     sale_points_save_from_json_file,
 )
-from project.apps.nearest_bank_api.models import Service, SalePoint, Ticket
 
 
 @pytest.mark.django_db
@@ -17,6 +18,7 @@ def test_valid_data(client):
 
     test_data = {
         'user_id': 4223,
+        'label': 'Это Label',
         'salePoint': sale_point_to_add.id,
         'service': service_to_add.id
     }
@@ -31,6 +33,7 @@ def test_valid_data(client):
 
     assert Ticket.objects.filter(
         user_id=test_data['user_id'],
+        label=test_data['label'],
         salePoint=sale_point_to_add,
         service=service_to_add
     ).exists()

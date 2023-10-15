@@ -43,7 +43,12 @@ def test_ticket(client):
     for sale_point in response.data:
         db_sale_point = SalePoint.objects.get(id=sale_point['id'])
         expected_tickets = [
-            {'id': db_ticket.id, 'service': db_ticket.service_id, 'user_id': None}
+            {
+                'id': db_ticket.id,
+                'service': db_ticket.service_id,
+                'user_id': None,
+                'label': db_ticket.label
+            }
             for db_ticket in db_sale_point.tickets.all()
         ]
         assert expected_tickets == sale_point['tickets']

@@ -1,7 +1,7 @@
+from project.apps.nearest_bank_api.domain.emums import ServiceActivityEnum
 from project.apps.nearest_bank_api.models import Atm, SalePoint
 from project.apps.nearest_bank_api.selectors.atm import atm_get_list
 from project.apps.nearest_bank_api.selectors.sale_points import sale_point_get_list
-from project.apps.nearest_bank_api.domain.emums import ServiceActivityEnum
 
 
 def unified_points_get_queryset() -> list[Atm | SalePoint]:

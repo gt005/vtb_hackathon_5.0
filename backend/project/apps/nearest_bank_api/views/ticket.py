@@ -1,10 +1,14 @@
+from django.shortcuts import get_object_or_404
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from project.apps.nearest_bank_api.serializers.ticket import TicketReadSerializer, TicketCreateSerializer
-from project.apps.nearest_bank_api.services.ticket import ticket_create, ticket_delete
+
 from project.apps.nearest_bank_api.models import Ticket
-from rest_framework import status
-from django.shortcuts import get_object_or_404
+from project.apps.nearest_bank_api.serializers.ticket import (
+    TicketCreateSerializer,
+    TicketReadSerializer,
+)
+from project.apps.nearest_bank_api.services.ticket import ticket_create, ticket_delete
 
 
 class TicketListView(APIView):
@@ -25,6 +29,7 @@ class TicketListView(APIView):
 
 class TicketDetailView(APIView):
     def delete(self, request, ticket_id: int, *agrs, **kwargs):
+        print(ticket_id)
         ticket = get_object_or_404(Ticket, id=ticket_id)
 
         ticket_delete(ticket=ticket)

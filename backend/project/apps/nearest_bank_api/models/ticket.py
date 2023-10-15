@@ -4,6 +4,10 @@ from project.apps.nearest_bank_api.models import SalePoint, Service
 
 
 class Ticket(models.Model):
+    label = models.CharField(
+        verbose_name='Заметка о тикете',
+        max_length=255
+    )
     user_id = models.IntegerField(
         verbose_name='id пользователя',
         null=True

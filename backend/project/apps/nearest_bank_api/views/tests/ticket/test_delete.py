@@ -1,10 +1,11 @@
 import pytest
 from django.urls import reverse
 from rest_framework.status import HTTP_204_NO_CONTENT
+
+from project.apps.nearest_bank_api.models import SalePoint, Service, Ticket
 from project.apps.nearest_bank_api.services.sale_point import (
     sale_points_save_from_json_file,
 )
-from project.apps.nearest_bank_api.models import Service, SalePoint, Ticket
 
 
 @pytest.mark.django_db

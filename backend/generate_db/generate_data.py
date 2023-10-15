@@ -7,12 +7,23 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
 
 django.setup()
 
-
 import random
+
 from django.db import IntegrityError
-from project.apps.nearest_bank_api.models import SalePointServiceThrough, SalePoint, Service, Ticket
+from faker import Faker
+
 from project.apps.nearest_bank_api.domain.emums import ServiceActivityEnum
-from project.apps.nearest_bank_api.selectors.unified_points import unified_point_get_active_service_id_list
+from project.apps.nearest_bank_api.models import (
+    SalePoint,
+    SalePointServiceThrough,
+    Service,
+    Ticket,
+)
+from project.apps.nearest_bank_api.selectors.unified_points import (
+    unified_point_get_active_service_id_list,
+)
+
+fake = Faker("ru_RU")
 
 
 def create_sale_point_service_through(entries=100):
@@ -56,6 +67,7 @@ def create_ticket(entries=100):
 
         try:
             Ticket.objects.create(
+                label=fake.sentence(),
                 user_id=random.randint(1, 1_000_000),
                 salePoint=sale_point,
                 service=service,
