@@ -6,9 +6,9 @@ from rest_framework.serializers import (
     ValidationError,
 )
 
+from project.apps.nearest_bank_api.domain.emums import ServiceNameEnum
 from project.apps.nearest_bank_api.models.atm import Atm, AtmServiceThrough
 from project.apps.nearest_bank_api.models.common import Service
-from project.apps.nearest_bank_api.domain.emums import ServiceNameEnum
 
 
 class AtmServiceThroughCreateSerializer(Serializer):

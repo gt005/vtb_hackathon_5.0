@@ -3,8 +3,8 @@ import json
 import pytest
 from django.forms.models import model_to_dict
 
-from project.apps.nearest_bank_api.models.atm import Atm, AtmServiceThrough
 from project.apps.nearest_bank_api.domain.emums import ServiceNameEnum
+from project.apps.nearest_bank_api.models.atm import Atm, AtmServiceThrough
 from project.apps.nearest_bank_api.services.atm import atms_save_from_json_file
 
 
