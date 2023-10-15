@@ -6,7 +6,7 @@ from project.apps.nearest_bank_api.models import Ticket
 class TicketReadSerializer(ModelSerializer):
     class Meta:
         model = Ticket
-        fields = ('id', 'label', 'user_id', 'service')
+        fields = ('id', 'label', 'user_id', 'salePoint', 'service')
 
 
 class TicketCreateSerializer(ModelSerializer):
