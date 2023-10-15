@@ -16,6 +16,7 @@ if __name__ == '__main__':
     from project.apps.nearest_bank_api.services.sale_point import (
         sale_points_save_from_json_file,
     )
-
+    print('Парсинг Sale Point начался')
     sale_points_save_from_json_file(OFFICES_FILE_NAME)
+    print('Парсинг Atm начался')
     atms_save_from_json_file(ATMS_FILE_NAME)

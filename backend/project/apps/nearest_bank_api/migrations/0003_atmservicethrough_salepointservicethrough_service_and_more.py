@@ -87,5 +87,5 @@ class Migration(migrations.Migration):
             name='atmservicethrough',
             unique_together={('atm', 'service')},
         ),
-        migrations.RunPython(create_service_names)
+        # migrations.RunPython(create_service_names)
     ]

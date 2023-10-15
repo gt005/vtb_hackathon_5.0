@@ -10,7 +10,7 @@ def unified_points_get_queryset() -> list[Atm | SalePoint]:
     return unified_list
 
 
-def unified_point_get_service_id_list(unified_point: Atm | SalePoint) -> list[int]:
+def unified_point_get_active_service_id_list(unified_point: Atm | SalePoint) -> list[int]:
     if isinstance(unified_point, Atm):
         available_services = unified_point.services.filter(
             atmservicethrough__serviceActivity=ServiceActivityEnum.AVAILABLE.value

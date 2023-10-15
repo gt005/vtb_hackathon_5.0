@@ -10,8 +10,9 @@ django.setup()
 
 import random
 from django.db import IntegrityError
-from project.apps.nearest_bank_api.models import SalePointServiceThrough, SalePoint, Service
+from project.apps.nearest_bank_api.models import SalePointServiceThrough, SalePoint, Service, Ticket
 from project.apps.nearest_bank_api.domain.emums import ServiceActivityEnum
+from project.apps.nearest_bank_api.selectors.unified_points import unified_point_get_active_service_id_list
 
 
 def create_sale_point_service_through(entries=100):
@@ -33,11 +34,40 @@ def create_sale_point_service_through(entries=100):
                 serviceActivity=ServiceActivityEnum.AVAILABLE.value
             )
         except IntegrityError:
-            print(f'Combination of sale_point: {sale_point.id} and service: {service.id} already exists.')
+            continue
+
+    print(f'{entries} SalePointServiceThrough objects created.')
+
+
+def create_ticket(entries=100):
+    all_services = list(Service.objects.all())
+    all_sale_points = list(SalePoint.objects.all())
+
+    if not all_services or not all_sale_points:
+        print('No data for services or sale points. Please make sure they are populated.')
+        return
+
+    for _ in range(entries):
+        sale_point = random.choice(all_sale_points)
+        if not unified_point_get_active_service_id_list(unified_point=sale_point):
+            continue
+
+        service = random.choice(sale_point.services.all())
+
+        try:
+            Ticket.objects.create(
+                user_id=random.randint(1, 1_000_000),
+                salePoint=sale_point,
+                service=service,
+            )
+        except IntegrityError:
             continue
 
     print(f'{entries} SalePointServiceThrough objects created.')
 
 
 if __name__ == '__main__':
+    print('Началась генерация сервисов у SalePoint')
     create_sale_point_service_through(len(SalePoint.objects.all()) * 3)
+    print('Началась генерация тикетов')
+    create_ticket(len(SalePoint.objects.all()) * 5)

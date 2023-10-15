@@ -3,20 +3,6 @@
 from django.db import migrations, models
 import django.db.models.deletion
 
-from project.apps.nearest_bank_api.domain.emums import ServiceNameEnum
-from project.apps.nearest_bank_api.models.consts import AVERAGE_WAIT_TIME_FOR_SERVICE
-
-
-def fill_service_average_time(apps, schema_editor):
-    Service = apps.get_model('nearest_bank_api', 'Service')
-    services = []
-    for service_name in ServiceNameEnum:
-        service = Service.objects.get(name=service_name.value)
-        service.averageWaitTime = AVERAGE_WAIT_TIME_FOR_SERVICE[service_name.name]
-        services.append(service)
-
-    Service.objects.bulk_update(services, ('averageWaitTime',))
-
 
 class Migration(migrations.Migration):
 
@@ -46,5 +32,4 @@ class Migration(migrations.Migration):
                 'verbose_name': 'Талон в отделении',
             },
         ),
-        migrations.RunPython(fill_service_average_time)
     ]
