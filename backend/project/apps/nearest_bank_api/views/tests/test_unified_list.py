@@ -47,6 +47,7 @@ def test_ticket(client):
                 'id': db_ticket.id,
                 'service': db_ticket.service_id,
                 'user_id': None,
+                'salePoint': db_ticket.salePoint.id,
                 'label': db_ticket.label
             }
             for db_ticket in db_sale_point.tickets.all()

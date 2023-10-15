@@ -8,6 +8,7 @@ from rest_framework.serializers import (
 
 from project.apps.nearest_bank_api.models.atm import Atm, AtmServiceThrough
 from project.apps.nearest_bank_api.models.common import Service
+from project.apps.nearest_bank_api.domain.emums import ServiceNameEnum
 
 
 class AtmServiceThroughCreateSerializer(Serializer):
@@ -42,7 +43,9 @@ class AtmCreateSerializer(ModelSerializer):
         atm = Atm.objects.create(**validated_data)
 
         for service_data in services:
-            service = Service.objects.get_or_create(name=service_data['name'])[0]
+            service = Service.objects.get_or_create(
+                name=ServiceNameEnum[service_data['name']].value
+            )[0]
             AtmServiceThrough.objects.create(
                 atm=atm,
                 service=service,

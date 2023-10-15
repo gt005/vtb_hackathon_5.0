@@ -5,12 +5,6 @@ import django.db.models.deletion
 from project.apps.nearest_bank_api.domain.emums import ServiceNameEnum
 
 
-def create_service_names(apps, schema_editor):
-    Service = apps.get_model('nearest_bank_api', 'Service')
-    for service_name in ServiceNameEnum:
-        Service.objects.get_or_create(name=service_name.value)
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -87,5 +81,4 @@ class Migration(migrations.Migration):
             name='atmservicethrough',
             unique_together={('atm', 'service')},
         ),
-        # migrations.RunPython(create_service_names)
     ]

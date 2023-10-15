@@ -3,7 +3,7 @@
 from django.db import migrations, models
 
 from project.apps.nearest_bank_api.domain.emums import ServiceNameEnum
-from project.apps.nearest_bank_api.models.consts import AVERAGE_WAIT_TIME_FOR_SERVICE, SERVICES_ONLINE_TEXT, SERVICES_DESCRIPTION
+from project.apps.nearest_bank_api.domain.consts import AVERAGE_WAIT_TIME_FOR_SERVICE, SERVICES_ONLINE_TEXT, SERVICES_DESCRIPTION
 
 
 def fill_service_average_time(apps, schema_editor):

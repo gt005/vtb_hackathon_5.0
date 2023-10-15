@@ -4,6 +4,7 @@ import pytest
 from django.forms.models import model_to_dict
 
 from project.apps.nearest_bank_api.models.atm import Atm, AtmServiceThrough
+from project.apps.nearest_bank_api.domain.emums import ServiceNameEnum
 from project.apps.nearest_bank_api.services.atm import atms_save_from_json_file
 
 
@@ -35,6 +36,6 @@ def test_valid_case():
         for service_name, service_availability in data['services'].items():
             assert AtmServiceThrough.objects.filter(
                 atm=atm,
-                service__name=service_name,
+                service__name=ServiceNameEnum[service_name].value,
                 **service_availability
             ).exists()
